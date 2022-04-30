@@ -96,17 +96,27 @@ plt.imshow(cropped_img)
 ```
 ## Output:
 ### i)Image Translation
+![Screenshot (63)](https://user-images.githubusercontent.com/75235759/166113469-fa32ce45-fba4-4342-84c7-97d9c55734d1.png)
 
 
 ### ii) Image Scaling
+![Screenshot (64)](https://user-images.githubusercontent.com/75235759/166113474-b47e72d9-04a2-4bba-bc4f-2f85d9b9eada.png)
+
 
 ### iii)Image shearing
+![Screenshot (65)](https://user-images.githubusercontent.com/75235759/166113480-99ffd65f-e5a7-4f28-b885-bbfa657d89ab.png)
+
 
 ### iv)Image Reflection
+![Screenshot (66)](https://user-images.githubusercontent.com/75235759/166113485-34e3e087-1993-410a-862e-d61927c0433f.png)
 
 ### v)Image Rotation
+![Screenshot (67)](https://user-images.githubusercontent.com/75235759/166113488-ca71634d-1f4e-43e6-8b8c-855a383180f3.png)
+
 
 ### vi)Image Cropping
+![Screenshot (68)](https://user-images.githubusercontent.com/75235759/166113495-ead7e613-5286-4b8d-be80-967b87a85bbc.png)
+
 
 ## Result: 
 
