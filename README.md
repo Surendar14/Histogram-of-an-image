@@ -26,7 +26,7 @@ Print the original and equalized image using cv2.imshow() and end the program.
 # Developed By: SURENDAR S
 # Register Number: 212220230051
 ```
-
+``
 import cv2
 import matplotlib.pyplot as plt
 
@@ -65,7 +65,7 @@ cv2.imshow("Equalized Image",equ)
 cv2.waitKey(0)
 cv2.destroyAllWindows
 
-```
+``
 ## Output:
 ### Input Grayscale Image and Color Image
 
