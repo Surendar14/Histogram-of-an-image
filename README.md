@@ -1,123 +1,91 @@
-# Image-Transformation
+# Histogram and Histogram Equalization of an image
 ## Aim
-To perform image transformation such as Translation, Scaling, Shearing, Reflection, Rotation and Cropping using OpenCV and Python.
+To obtain a histogram for finding the frequency of pixels in an Image with pixel values ranging from 0 to 255. Also write the code using OpenCV to perform histogram equalization.
 
 ## Software Required:
 Anaconda - Python 3.7
 
 ## Algorithm:
 ### Step1:
-Import the necessary libraries and read the original image and save it a image variable.
-<br>
+Import cv2, matplotlib.py libraries and display the saved images using cv2.imshow().
 
 ### Step2:
-Translate the image using<br>Translation_matrix=np.float32([[1,0,120],[0,1,120],[0,0,1]]) Translated_image=cv2.warpPerspective(org_img,Translation_matrix,(col,row))
-<br>
+Use cv2.calcHist(images, channels, mask, histSize, ranges[, hist[, accumulate]]) to find the histogram of the image.
 
 ### Step3:
-Scale the image using<br>Scaling_Matrix=np.float32([[1.2,0,0],[0,1.2,0],[0,0,1]])<br>Scaled_image=cv2.warpPerspective(org_img,Scaling_Matrix,(col,row))
-<br>
+Plot the image and its stem plots using the plt.show() and plt.stem() functions.
 
 ### Step4:
-Shear the image using<br>Shearing_matrix=np.float32([[1,0.2,0],[0.2,1,0],[0,0,1]])<br>Sheared_image=cv2.warpPerspective(org_img,Shearing_matrix,(col2,int(row1.5)))
-<br>
+Equalize the grayscale image using the in-built function cv2.equalizeHist().
 
 ### Step5:
-Reflection of image can be achieved through the code<br>Reflection_matrix_row=np.float32([[1,0,0],[0,-1,row],[0,0,1]]) <br>Reflected_image_row=cv2.warpPerspective(org_img,Reflection_matrix_row,(col,int(row)))
-<br>
-
-### Step6:
-Rotate the image using Rotation_angle=np.radians(10)<br>Rotation_matrix=np.float32([[np.cos(Rotation_angle),-np.sin(Rotation_angle),0], [np.sin(Rotation_angle),np.cos(Rotation_angle),0], [0,0,1]])<br>Rotated_image=cv2.warpPerspective(org_img,Rotation_matrix,(col,(row)))
-<br>
-
-### Step7:
-Crop the image using<br>cropped_image=org_img[10:350,320:560]
-<br>
-
-### Step8:
-Display all the Transformed images.
-<br>
+Print the original and equalized image using cv2.imshow() and end the program.
 
 ## Program:
-```python
-Developed By: SURENDAR A
-Register Number: 212220230051
-i)Image Translation
-import numpy as np
+```
+# Developed By: SURENDAR S
+# Register Number: 212220230051
+```
+```
 import cv2
 import matplotlib.pyplot as plt
-input= cv2.imread("tower.jpg")
-input= cv2.cvtColor(input,cv2.COLOR_BGR2RGB)
-cv2.imshow('Input',input)
-plt.imshow(input)
+
+# Write your code to find the histogram of gray scale image and color image channels.
+gray_image = cv2.imread("doggy (1).jpg")
+color_image =cv2.imread("cat (1).jpg",-1)
+cv2.imshow("Gray Image",gray_image)
+cv2.imshow("Colour Image",color_image)
 cv2.waitKey(0)
-plt.axis("on")
-rows,cols,dim=input.shape
-translation_matrix=np.float32(([1,0,100],[0,1,200],[0,0,1]))
-translated_img=cv2.warpPerspective(input,translation_matrix,(cols,rows))
-plt.axis("off")
-plt.imshow(translated_img)
+cv2.destroyAllWindows()
 
-ii) Image Scaling
-scaling_matrix=np.float32([[1.2,0,0],[0,1.2,0],[0,0,1]])
-scaled_img=cv2.warpPerspective(input,scaling_matrix,(cols,rows))
-plt.axis("off")
-plt.imshow(scaled_img)
+# Display the histogram of gray scale image and any one channel histogram from color image
+gray_hist = cv2.calcHist([gray_image],[0],None,[256],[0,256])
+color_hist = cv2.calcHist([color_image],[0],None,[256],[0,256])
+plt.figure()
+plt.imshow(gray_image)
+plt.show()
+plt.title("Histogram")
+plt.xlabel("Grayscale Value")
+plt.ylabel("Pixel Count")
+plt.stem(gray_hist)
+plt.show()
+plt.imshow(color_image)
+plt.show()
+plt.title("Histogram of Color Image - Green Channel")
+plt.xlabel("Intensity Value")
+plt.ylabel("Pixel Count")
+plt.stem(color_hist)
+plt.show()
 
-iii)Image shearing
-shearing_matrix=np.float32([[1,0.2,0],[0.2,1,0],[0,0,1]])
-sheared_img=cv2.warpPerspective(input,shearing_matrix,(cols*2,int(rows*1.5)))
-plt.axis("off")
-plt.imshow(sheared_img)
+# Write the code to perform histogram equalization of the image. 
+gray_image = cv2.imread("doggy (1).jpg",0)
+cv2.imshow("Gray Image",gray_image)
+equ = cv2.equalizeHist(gray_image)
+cv2.imshow("Equalized Image",equ)
+cv2.waitKey(0)
+cv2.destroyAllWindows
 
-iv)Image Reflection
-reflection_matrix_col=np.float32([[-1,0,cols],[0,1,0],[0,0,1]])
-reflected_img_col=cv2.warpPerspective(input,reflection_matrix_col,(cols,int(rows)))
-plt.axis("off")
-plt.imshow(reflected_img_col)
-reflection_matrix_row=np.float32([[1,0,0],[0,-1,rows],[0,0,1]])
-reflected_img_row=cv2.warpPerspective(input,reflection_matrix_row,(cols,int(rows)))
-plt.axis("off")
-plt.imshow(reflected_img_row)
-
-v)Image Rotation
-rotation_angle=np.radians(10)
-rotation_matrix=np.float32([[np.cos(rotation_angle),-np.sin(rotation_angle),0],
-                                [np.sin(rotation_angle),np.cos(rotation_angle),0],
-                                [0,0,1]])
-rotated_img=cv2.warpPerspective(input,rotation_matrix,(cols,(rows)))
-plt.axis("off")
-plt.imshow(rotated_img)
-
-vi)Image Cropping
-cropped_img=input[10:350,320:560]
-plt.axis("off")
-plt.imshow(cropped_img)
 ```
 ## Output:
-### i)Image Translation
-![Screenshot (63)](https://user-images.githubusercontent.com/75235759/166113469-fa32ce45-fba4-4342-84c7-97d9c55734d1.png)
+### Input Grayscale Image and Color Image
+
+![download (4)](https://user-images.githubusercontent.com/75235759/229364699-f7b19e65-dd93-4614-91a6-342c499c61f7.png)
+
+![download (3)](https://user-images.githubusercontent.com/75235759/229364680-7d55fb4c-c62b-42a4-96b9-36c88e605d12.png)
 
 
-### ii) Image Scaling
-![Screenshot (64)](https://user-images.githubusercontent.com/75235759/166113474-b47e72d9-04a2-4bba-bc4f-2f85d9b9eada.png)
+### Histogram of Grayscale Image and any channel of Color Image
+
+![download (2)](https://user-images.githubusercontent.com/75235759/229364880-3b903f52-77a0-4413-af9f-5dfb6272cddf.png)
+
+![download (1)](https://user-images.githubusercontent.com/75235759/229364897-fde77abb-566d-442b-8f0a-8a2b0385ae59.png)
+
+![download](https://user-images.githubusercontent.com/75235759/229364917-624ffbb8-c1a4-425f-a63e-5993089a37ad.png)
 
 
-### iii)Image shearing
-![Screenshot (65)](https://user-images.githubusercontent.com/75235759/166113480-99ffd65f-e5a7-4f28-b885-bbfa657d89ab.png)
+### Histogram Equalization of Grayscale Image
 
-
-### iv)Image Reflection
-![Screenshot (66)](https://user-images.githubusercontent.com/75235759/166113485-34e3e087-1993-410a-862e-d61927c0433f.png)
-
-### v)Image Rotation
-![Screenshot (67)](https://user-images.githubusercontent.com/75235759/166113488-ca71634d-1f4e-43e6-8b8c-855a383180f3.png)
-
-
-### vi)Image Cropping
-![Screenshot (68)](https://user-images.githubusercontent.com/75235759/166113495-ead7e613-5286-4b8d-be80-967b87a85bbc.png)
-
+<img width="299" alt="hist" src="https://user-images.githubusercontent.com/75235759/229364934-ead92dac-8ab4-4145-9d64-c8035230c45a.png">\
 
 ## Result: 
-
-Thus the different image transformations such as Translation, Scaling, Shearing, Reflection, Rotation and Cropping are done using OpenCV and python programming.
+Thus the histogram for finding the frequency of pixels in an image with pixel values ranging from 0 to 255 is obtained. Also,histogram equalization is done for the gray scale image using OpenCV.
