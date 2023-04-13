@@ -26,7 +26,7 @@ Print the original and equalized image using cv2.imshow() and end the program.
 # Developed By: SURENDAR S
 # Register Number: 212220230051
 ```
-```
+```python
 import cv2
 import matplotlib.pyplot as plt
 
