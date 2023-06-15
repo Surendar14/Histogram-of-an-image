@@ -1,4 +1,4 @@
-# EX-4--Histogram and Histogram Equalization of an image
+# Histogram and Histogram Equalization of an image
 ## Aim
 To obtain a histogram for finding the frequency of pixels in an Image with pixel values ranging from 0 to 255. Also write the code using OpenCV to perform histogram equalization.
 
